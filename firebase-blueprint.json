@@ -1,0 +1,96 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user physical data and goals",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "age": { "type": "number" },
+        "gender": { "type": "string", "enum": ["male", "female", "other"] },
+        "nationality": { "type": "string" },
+        "weight": { "type": "number" },
+        "height": { "type": "number" },
+        "activityLevel": { "type": "string", "enum": ["sedentary", "light", "moderate", "active", "very_active"] },
+        "goal": { "type": "string", "enum": ["lose", "gain", "maintain"] },
+        "targetWeight": { "type": "number" },
+        "weeklyGoal": { "type": "number" }
+      },
+      "required": ["name", "email", "age", "gender", "weight", "activityLevel", "goal"]
+    },
+    "Meal": {
+      "title": "Meal",
+      "description": "Stores food intake records",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "foodName": { "type": "string" },
+        "calories": { "type": "number" },
+        "protein": { "type": "number" },
+        "carbs": { "type": "number" },
+        "fats": { "type": "number" },
+        "mealType": { "type": "string", "enum": ["breakfast", "lunch", "dinner", "snack"] },
+        "timestamp": { "type": "number" },
+        "portionSize": { "type": "string" }
+      },
+      "required": ["userId", "foodName", "calories", "mealType", "timestamp"]
+    },
+    "WeightLog": {
+      "title": "Weight Log",
+      "description": "Stores weight progress over time",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "weight": { "type": "number" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["userId", "weight", "timestamp"]
+    },
+    "WaterLog": {
+      "title": "Water Log",
+      "description": "Stores daily water intake",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "amount": { "type": "number" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["userId", "amount", "timestamp"]
+    },
+    "Habit": {
+      "title": "Habit",
+      "description": "Stores daily habit completion",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "completed": { "type": "boolean" },
+        "date": { "type": "string" }
+      },
+      "required": ["userId", "name", "completed", "date"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile data"
+    },
+    "/users/{userId}/meals/{mealId}": {
+      "schema": "Meal",
+      "description": "User meal logs"
+    },
+    "/users/{userId}/weightLogs/{logId}": {
+      "schema": "WeightLog",
+      "description": "User weight logs"
+    },
+    "/users/{userId}/waterLogs/{logId}": {
+      "schema": "WaterLog",
+      "description": "User water logs"
+    },
+    "/users/{userId}/habits/{habitId}": {
+      "schema": "Habit",
+      "description": "User habit tracking"
+    }
+  }
+}

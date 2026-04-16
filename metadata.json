@@ -1,0 +1,5 @@
+{
+  "name": "CALORI AI",
+  "description": "An intelligent health system for calorie tracking, nutrition analysis, and AI-powered personal coaching.",
+  "requestFramePermissions": ["camera"]
+}
